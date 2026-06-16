@@ -1,0 +1,603 @@
+/* ── Layout ─────────────────────────────────────────────── */
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.app-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--text-primary);
+}
+
+/* ── Connection badge ───────────────────────────────────── */
+
+.connection-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.connection-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.connection-badge.status-connected .connection-dot { background: var(--green); }
+.connection-badge.status-connected {
+  color: var(--green);
+  border-color: rgba(22, 163, 74, 0.3);
+  background: rgba(22, 163, 74, 0.06);
+}
+.connection-badge.status-connecting .connection-dot,
+.connection-badge.status-reconnecting .connection-dot {
+  background: #f59e0b;
+  animation: dot-pulse 1.2s ease-in-out infinite;
+}
+.connection-badge.status-disconnected .connection-dot { background: var(--red); }
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ── Markets card ───────────────────────────────────────── */
+
+.markets-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.markets-card-header {
+  padding: 20px 24px 0;
+}
+
+.markets-card-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── Tabs ───────────────────────────────────────────────── */
+
+.market-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 14px 24px 0;
+}
+
+.tab-btn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.tab-btn:hover { background: var(--bg); }
+
+.tab-btn.tab-active {
+  background: var(--text-primary);
+  color: #fff;
+  border-color: var(--text-primary);
+}
+
+/* ── Search bar ─────────────────────────────────────────── */
+
+.search-bar {
+  position: relative;
+  padding: 16px 24px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 38px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px 36px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.search-bar input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.search-bar input::placeholder { color: var(--text-muted); }
+
+.search-clear {
+  position: absolute;
+  right: 38px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  transition: color 0.1s;
+}
+
+.search-clear:hover { color: var(--text-primary); }
+
+/* ── Market table ───────────────────────────────────────── */
+
+.market-table-wrap { width: 100%; }
+
+.market-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.market-table thead tr {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.market-table th {
+  padding: 10px 24px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.market-table td { padding: 14px 24px; }
+
+.market-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.market-table tbody tr:last-child { border-bottom: none; }
+.market-table tbody tr:hover { background: #f8fafc; }
+
+.num-cell { text-align: right; }
+.market-table th.num-cell { text-align: right; }
+
+/* Symbol cell */
+.row-symbol-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.symbol-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.symbol-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.symbol-name {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Favorite button */
+.fav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+
+.fav-btn:hover { color: #f59e0b; }
+.fav-btn.fav-active { color: #f59e0b; }
+
+/* Price / change / volume */
+.price-cell {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.change-cell {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.change-cell.positive { color: var(--green); }
+.change-cell.negative { color: var(--red); }
+
+.volume-cell {
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.skeleton {
+  color: var(--border);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.market-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  gap: 14px;
+}
+
+.market-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--border);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+.market-loader-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.no-results {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.table-footer {
+  padding: 12px 24px;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Detail view ────────────────────────────────────────── */
+
+.detail-view {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.back-btn {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.back-btn:hover {
+  background: var(--border);
+  color: var(--text-primary);
+}
+
+.detail-symbol-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.detail-symbol {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.detail-name {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Ticker hero */
+.ticker-hero {
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ticker-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ticker-price {
+  font-size: 36px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+}
+
+.ticker-change {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ticker-change.positive { color: var(--green); }
+.ticker-change.negative { color: var(--red); }
+
+/* Loading state: mute all values without changing layout so no CLS occurs */
+.ticker-loading .ticker-price,
+.ticker-loading .ticker-change,
+.ticker-loading .stat-value {
+  color: var(--text-muted);
+}
+
+.ticker-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 90px;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+.stat-value {
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+/* Detail panels */
+.detail-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 420px;
+}
+
+.panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+/* ── Orderbook ──────────────────────────────────────────── */
+
+.ob-panel {
+  padding: 16px 20px;
+  border-right: 1px solid var(--border);
+  overflow: auto;
+}
+
+.ob-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ob-table th {
+  padding: 4px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+}
+
+.ob-table th.ob-price { text-align: left; }
+
+.ob-table td {
+  padding: 3px 6px;
+  text-align: right;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.ob-price { text-align: left !important; font-weight: 500; }
+.ob-ask { color: var(--red); }
+.ob-bid { color: var(--green); }
+
+.ob-qty { color: var(--text-primary); }
+.ob-total { color: var(--text-secondary); }
+
+.ob-spread-row td {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 6px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Each skeleton cell inherits alignment from ob-price/ob-qty/ob-total */
+.ob-skeleton { color: var(--border); }
+
+/* Fixed column widths via colgroup — prevents columns from resizing
+   when skeleton dashes are replaced by real price/size data (eliminates CLS) */
+.ob-col-price  { width: 44%; }
+.ob-col-qty    { width: 24%; }
+.ob-col-total  { width: 32%; }
+
+.tr-col-price  { width: 36%; }
+.tr-col-size   { width: 18%; }
+.tr-col-side   { width: 20%; }
+.tr-col-time   { width: 26%; }
+
+/* ── Recent Trades ──────────────────────────────────────── */
+
+.trades-panel {
+  padding: 16px 20px;
+  overflow: auto;
+}
+
+.trades-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.trades-table th {
+  padding: 4px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+}
+
+.trades-table th.tr-price { text-align: left; }
+
+.trades-table td {
+  padding: 3px 6px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tr-price { text-align: left !important; font-weight: 500; }
+.tr-size { text-align: right; color: var(--text-primary); }
+.tr-side { text-align: right; }
+.tr-time { text-align: right; color: var(--text-muted); }
+
+/* New trade flash */
+.trade-new {
+  animation: trade-flash 0.4s ease-out forwards;
+}
+
+.trade-new-buy { --flash-trade-color: rgba(22, 163, 74, 0.15); }
+.trade-new-sell { --flash-trade-color: rgba(220, 38, 38, 0.15); }
+
+@keyframes trade-flash {
+  0% { background: var(--flash-trade-color); }
+  100% { background: transparent; }
+}
+
+/* Side badge */
+.side-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.side-buy {
+  color: var(--green);
+  background: rgba(22, 163, 74, 0.1);
+}
+
+.side-sell {
+  color: var(--red);
+  background: rgba(220, 38, 38, 0.1);
+}
+
+
+/* Detail footer */
+.detail-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.footer-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.footer-dot.status-connected { background: var(--green); }
+.footer-dot.status-connecting,
+.footer-dot.status-reconnecting {
+  background: #f59e0b;
+  animation: dot-pulse 1.2s ease-in-out infinite;
+}
+.footer-dot.status-disconnected { background: var(--red); }

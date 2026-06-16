@@ -1,0 +1,36 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --green: #16a34a;
+  --red: #dc2626;
+  --blue: #2563eb;
+  --blue-light: #eff6ff;
+  --flash-up-bg: rgba(22, 163, 74, 0.12);
+  --flash-down-bg: rgba(220, 38, 38, 0.12);
+
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+#root {
+  width: 100%;
+}
